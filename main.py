@@ -1,17 +1,17 @@
+# This Python file uses the following encoding: utf-8
+import sys
 from PySide6.QtWidgets import QApplication, QWidget
 from form import Ui_Widget
-import sys
 
-class MainWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_Widget()  # Instancie a classe gerada pelo Qt Designer
-        self.ui.setupUi(self)  # Configure a interface de usuário na janela principal
-
+class Widget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.ui = Ui_Widget()
+        self.ui.setupUi(self)
 
 
 if __name__ == "__main__":
-    app = QApplication([])
-    window = MainWindow()
-    window.show()
-    sapp.exec()
+    app = QApplication(sys.argv)
+    widget = Widget()
+    widget.show()
+    sys.exit(app.exec())
