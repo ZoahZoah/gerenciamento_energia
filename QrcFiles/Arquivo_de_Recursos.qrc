@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/imgs">
-        <file>QrcFiles/_icons/mcqueen lighting icon</file>
+        <file>QrcFiles/_icons/icons8-mcqueen-lighting-icon</file>
         <file>QrcFiles/_icons/icons8-instagram-48.png</file>
         <file>QrcFiles/_icons/icons8-linkedin-48.png</file>
         <file>QrcFiles/_icons/icons8-twitterx-48.png</file>
         <file>QrcFiles/_icons/icons8-whatsapp-48.png</file>
         <file>QrcFiles/_icons/PostAmbScience_EG35-590x275.png</file>
+        <file>QrcFiles/_icons/icons8-menu-32.png</file>
     </qresource>
 </RCC>

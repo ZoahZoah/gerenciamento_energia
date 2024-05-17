@@ -22,7 +22,7 @@
     <widget class="QFrame" name="left_container">
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>1</width>
        <height>16777215</height>
       </size>
      </property>
@@ -100,7 +100,7 @@ QPushButton:hover{
              </rect>
             </property>
             <attribute name="label">
-             <string>Page 1</string>
+             <string>Sobre a empresa</string>
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
@@ -149,7 +149,7 @@ QPushButton:hover{
              </rect>
             </property>
             <attribute name="label">
-             <string>Page 2</string>
+             <string>Sistema</string>
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
@@ -219,17 +219,33 @@ QPushButton:hover{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
+         <item alignment="Qt::AlignLeft">
           <widget class="QPushButton" name="btn_toggle">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
-            <string>PushButton</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="Arquivo_de_Recursos.qrc">
+             <normaloff>:/imgs/QrcFiles/_icons/icons8-menu-32.png</normaloff>:/imgs/QrcFiles/_icons/icons8-menu-32.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Blink inovações</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Blink inovações&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -254,7 +270,7 @@ QPushButton:hover{
          <item>
           <widget class="QStackedWidget" name="Pages">
            <property name="currentIndex">
-            <number>3</number>
+            <number>2</number>
            </property>
            <widget class="QWidget" name="pg_home">
             <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -396,7 +412,7 @@ QPushButton:hover{
                 <item>
                  <widget class="QLabel" name="label_11">
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Blink Empresas&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; é especializada em soluções de gerenciamento e controle de energia elétrica para empresas. &lt;br/&gt;Oferecemos serviços como monitoramento de consumo, otimização de demanda, e eficiência energética.&lt;br/&gt; Nossa equipe de especialistas trabalha para garantir que sua empresa tenha um uso inteligente e sustentável&lt;br/&gt; da energia elétrica, reduzindo custos e impacto ambiental.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Se você deseja saber mais detalhes ou tem alguma necessidade específica, não hesite&lt;br/&gt; em entrar em contato conosco! 💡🔌&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Blink Empresas&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; é especializada em soluções de gerenciamento e controle de energia elétrica para empresas. &lt;br/&gt;Oferecemos serviços como monitoramento de consumo, otimização de demanda, e eficiência energética.&lt;br/&gt;Nossa equipe de especialistas trabalha para garantir que sua empresa tenha um uso inteligente e sustentável&lt;br/&gt;da energia elétrica, reduzindo custos e impacto ambiental.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Se você deseja saber mais detalhes ou tem alguma necessidade específica, não hesite&lt;br/&gt;em entrar em contato conosco! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -591,6 +607,8 @@ background-color: rgb(249, 240, 107);</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Arquivo_de_Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QGraphicsView,
     QHBoxLayout, QLabel, QPushButton, QScrollBar,
     QSizePolicy, QSpacerItem, QStackedWidget, QToolBox,
     QVBoxLayout, QWidget)
+import QrcFiles.Arquivo_de_Recursos_rc as Arquivo_de_Recursos
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -31,7 +32,7 @@ class Ui_Widget(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_container = QFrame(Widget)
         self.left_container.setObjectName(u"left_container")
-        self.left_container.setMaximumSize(QSize(200, 16777215))
+        self.left_container.setMaximumSize(QSize(1, 16777215))
         self.left_container.setStyleSheet(u"*{\n"
 "	border:none;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -100,7 +101,7 @@ class Ui_Widget(object):
 
         self.verticalLayout_4.addItem(self.verticalSpacer)
 
-        self.toolBox.addItem(self.page, u"Page 1")
+        self.toolBox.addItem(self.page, u"Sobre a empresa")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.page_2.setGeometry(QRect(0, 0, 123, 429))
@@ -120,7 +121,7 @@ class Ui_Widget(object):
 
         self.verticalLayout_5.addItem(self.verticalSpacer_2)
 
-        self.toolBox.addItem(self.page_2, u"Page 2")
+        self.toolBox.addItem(self.page_2, u"Sistema")
 
         self.verticalLayout_3.addWidget(self.toolBox)
 
@@ -152,8 +153,17 @@ class Ui_Widget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btn_toggle = QPushButton(self.Header)
         self.btn_toggle.setObjectName(u"btn_toggle")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_toggle.sizePolicy().hasHeightForWidth())
+        self.btn_toggle.setSizePolicy(sizePolicy)
+        icon = QIcon()
+        icon.addFile(u":/imgs/QrcFiles/_icons/icons8-menu-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_toggle.setIcon(icon)
+        self.btn_toggle.setIconSize(QSize(32, 32))
 
-        self.horizontalLayout_2.addWidget(self.btn_toggle)
+        self.horizontalLayout_2.addWidget(self.btn_toggle, 0, Qt.AlignLeft)
 
         self.label = QLabel(self.Header)
         self.label.setObjectName(u"label")
@@ -165,11 +175,11 @@ class Ui_Widget(object):
 
         self.MainFrame = QFrame(self.right_container)
         self.MainFrame.setObjectName(u"MainFrame")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.MainFrame.sizePolicy().hasHeightForWidth())
-        self.MainFrame.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.MainFrame.sizePolicy().hasHeightForWidth())
+        self.MainFrame.setSizePolicy(sizePolicy1)
         self.MainFrame.setFrameShape(QFrame.StyledPanel)
         self.MainFrame.setFrameShadow(QFrame.Raised)
         self.vboxLayout = QVBoxLayout(self.MainFrame)
@@ -203,11 +213,11 @@ class Ui_Widget(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.frame = QFrame(self.pg_contatos)
         self.frame.setObjectName(u"frame")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy2)
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.frame)
@@ -270,11 +280,11 @@ class Ui_Widget(object):
 
         self.frame_6 = QFrame(self.pg_sobre)
         self.frame_6.setObjectName(u"frame_6")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Expanding)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
-        self.frame_6.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
+        self.frame_6.setSizePolicy(sizePolicy3)
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.verticalLayout_11 = QVBoxLayout(self.frame_6)
@@ -438,7 +448,7 @@ class Ui_Widget(object):
         self.retranslateUi(Widget)
 
         self.toolBox.setCurrentIndex(1)
-        self.Pages.setCurrentIndex(3)
+        self.Pages.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -450,12 +460,12 @@ class Ui_Widget(object):
         self.button_home.setText(QCoreApplication.translate("Widget", u"Home", None))
         self.butto_contato.setText(QCoreApplication.translate("Widget", u"Contatos", None))
         self.button_sobre.setText(QCoreApplication.translate("Widget", u"Sobre", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("Widget", u"Page 1", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("Widget", u"Sobre a empresa", None))
         self.text_account.setText(QCoreApplication.translate("Widget", u"Conta:", None))
         self.button_gerenciar.setText(QCoreApplication.translate("Widget", u"Gerenciamento", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("Widget", u"Page 2", None))
-        self.btn_toggle.setText(QCoreApplication.translate("Widget", u"PushButton", None))
-        self.label.setText(QCoreApplication.translate("Widget", u"Blink inova\u00e7\u00f5es", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("Widget", u"Sistema", None))
+        self.btn_toggle.setText("")
+        self.label.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p>Blink inova\u00e7\u00f5es</p></body></html>", None))
         self.Logo.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><img src=\":/imgs/QrcFiles/_icons/mcqueen lighting icon\"/><span style=\" vertical-align:super;\"><br/></span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("Widget", u"<html><head/><body><h1 style=\" margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:xx-large; font-weight:700;\">Bem-vindo \u00e0 Blink - Gerenciamento de Energia</span></h1><p>Conectamos voc\u00ea ao futuro sustent\u00e1vel com solu\u00e7\u00f5es inteligentes e eficientes para o<br/>gerenciamento de energia. Nossos servi\u00e7os incluem:</p><ol style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Efici\u00eancia Energ\u00e9tica</span>: Consultoria personalizada para otimizar o uso de<br/>energia em sua casa ou empresa.</li><li style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Monitoramento Inteligente</span>: Acompanhe "
                         "o consumo de energia em<br/>tempo real e tome decis\u00f5es informadas.</li><li style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Energias Renov\u00e1veis</span>: Explore fontes limpas como solar e e\u00f3lica.</li><li style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Armazenamento de Energia</span>: Solu\u00e7\u00f5es eficientes para uso residencial e<br/>comercial.</li></ol><p>Junte-se \u00e0 Blink e fa\u00e7a parte da revolu\u00e7\u00e3o energ\u00e9tica!</p></body></html>", None))
@@ -465,7 +475,7 @@ class Ui_Widget(object):
         self.label_8.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><img src=\":/imgs/QrcFiles/_icons/icons8-linkedin-48.png\"/><a href=\"https://www.linkedin.com/in/ivanaguiarm/\"><span style=\" font-size:24pt; vertical-align:super;\">Blink Energia</span></p></body></html>", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><img src=\":/imgs/QrcFiles/_icons/icons8-twitterx-48.png\"/><span style=\" font-size:24pt; vertical-align:super;\">BlinkEnergia</span></p></body></html>", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:700;\">Sobre...</span></p></body></html>", None))
-        self.label_11.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">A </span><span style=\" font-size:10pt; font-weight:700;\">Blink Empresas</span><span style=\" font-size:10pt;\"> é especializada em soluções de gerenciamento e controle de energia elétrica para empresas. <br/>Oferecemos serviços como monitoramento de consumo, otimização de demanda, e eficiência energética.<br/> Nossa equipe de especialistas trabalha para garantir que sua empresa tenha um uso inteligente e sustentável<br/> da energia elétrica, reduzindo custos e impacto ambiental.</span></p><p align=\"center\"><span style=\" font-size:10pt;\">Se você deseja saber mais detalhes ou tem alguma necessidade específica, não hesite<br/> em entrar em contato conosco! </span></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">A </span><span style=\" font-size:10pt; font-weight:700;\">Blink Empresas</span><span style=\" font-size:10pt;\"> \u00e9 especializada em solu\u00e7\u00f5es de gerenciamento e controle de energia el\u00e9trica para empresas. <br/>Oferecemos servi\u00e7os como monitoramento de consumo, otimiza\u00e7\u00e3o de demanda, e efici\u00eancia energ\u00e9tica.<br/>Nossa equipe de especialistas trabalha para garantir que sua empresa tenha um uso inteligente e sustent\u00e1vel<br/>da energia el\u00e9trica, reduzindo custos e impacto ambiental.</span></p><p align=\"center\"><span style=\" font-size:10pt;\">Se voc\u00ea deseja saber mais detalhes ou tem alguma necessidade espec\u00edfica, n\u00e3o hesite<br/>em entrar em contato conosco! </span></p></body></html>", None))
         self.label_12.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><img src=\":/imgs/QrcFiles/_icons/PostAmbScience_EG35-590x275.png\"/></p></body></html>", None))
         self.label_13.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\">Item 1</p></body></html>", None))
         self.pushButton.setText(QCoreApplication.translate("Widget", u"Ativar", None))

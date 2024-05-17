@@ -1,0 +1,46 @@
+import sys
+from PySide6 import QtCore
+from PySide6.QtCore import QCoreApplication
+from PySide6.QtWidgets import QApplication, QWidget
+from QrcFiles.ui_main_window import Ui_Widget
+
+class Widget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        titulo_janela = 'Blink'
+
+        self.ui = Ui_Widget()   
+        self.ui.setupUi(self)               # set widget setup
+        self.setWindowTitle(titulo_janela)  # set window title
+        self.ui.btn_toggle.clicked.connect(self.leftMenu)       # toggle_button
+
+        # Paginas do sistema
+        self.ui.button_home.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_home))
+        self.ui.butto_contato.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_contatos))
+        self.ui.button_sobre.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_sobre))
+        self.ui.button_gerenciar.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_gerenciamento))
+
+
+    def leftMenu(self):
+        width = self.ui.left_container.width()
+
+        if width == 1:
+            newWidth = 200
+        else:
+            newWidth = 1
+
+        self.ui.animation = QtCore.QPropertyAnimation(self.ui.left_container, b'maximumWidth')
+        self.ui.animation.setDuration(500)
+        self.ui.animation.setStartValue(width)
+        self.ui.animation.setEndValue(newWidth)
+        self.ui.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.ui.animation.start()
+
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    widget = Widget()
+    widget.show()
+    sys.exit(app.exec())
