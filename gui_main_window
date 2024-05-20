@@ -1,13 +1,16 @@
 import sys
+import config
+from data_base import BancoDeDados
 from PySide6 import QtCore
 from PySide6.QtCore import QCoreApplication
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QGraphicsScene
 from QrcFiles.ui_main_window import Ui_Widget
 
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.bd = BancoDeDados(config.host, config.user, config.password, 'dados_energia')
         titulo_janela = 'Blink'
 
         self.ui = Ui_Widget()   
@@ -36,7 +39,6 @@ class Widget(QWidget):
         self.ui.animation.setEndValue(newWidth)
         self.ui.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.ui.animation.start()
-
 
 
 if __name__ == "__main__":

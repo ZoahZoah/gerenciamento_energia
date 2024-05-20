@@ -1,7 +1,7 @@
 import sys
 import plotly.express as px
-import datetime
 import pandas as pd
+import config
 from QrcFiles.ui_main_window import Ui_Widget
 from data_base import BancoDeDados
 from PySide6 import QtCore
@@ -10,18 +10,18 @@ from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QGrap
 from QrcFiles.ui_main_window import Ui_Widget
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
-bd = BancoDeDados('localhost', 'root', 'Euamochocotone1998!!', 'dados_energia')
+bd = BancoDeDados(config.host, config.user, config.password, config.db)
 
-def load_html_chart():
+def load_html_chart(item):
     web_view = QWebEngineView()
     # Certifique-se de fornecer o caminho absoluto correto para o arquivo HTML
-    file_path = "/home/ivan/Python/gerenciamento_energia/grafico_caminho1.html"
+    file_path = f"/home/ivan/Python/gerenciamento_energia/grafico_{item}.html"
     web_view.load(QUrl.fromLocalFile(file_path))
     return web_view
 
 # Função para gerar o gráfico interativo
-def grafico_consumo_diario():
-    bd.mycursor.execute("""
+def grafico_consumo_diario(item):
+    bd.mycursor.execute(f"""
         SELECT 
             ano,
             mes,
@@ -38,7 +38,7 @@ def grafico_consumo_diario():
             WHERE 
                 YEAR(data_verificacao) = YEAR(CURDATE()) AND
                 MONTH(data_verificacao) = MONTH(CURDATE()) AND
-                caminho = 'caminho1'
+                caminho = '{item}'
             GROUP BY 
                 ano, mes, dia
         ) AS consumos_diarios
@@ -49,7 +49,7 @@ def grafico_consumo_diario():
     resultados = bd.mycursor.fetchall()
     return resultados
 
-def grafico_diario_anual():
+def grafico_diario_anual(item):
     bd.mycursor.execute("""
         SELECT 
                 ano,
@@ -66,7 +66,7 @@ def grafico_diario_anual():
                     leituras
                 WHERE 
                     data_verificacao >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
-                    AND caminho = 'caminho1'
+                    AND caminho = '{item}'
                 GROUP BY 
                     ano, mes, dia
             ) AS consumos_diarios
@@ -78,7 +78,7 @@ def grafico_diario_anual():
     return resultados
 
 
-def gerar_grafico(dados):
+def gerar_grafico(dados, item):
     df = pd.DataFrame(dados, columns=['ano', 'mes', 'dia', 'consumo_energia'])
     df = df.drop(columns=['ano'])  # Remover a coluna 'ano'
     
@@ -87,18 +87,19 @@ def gerar_grafico(dados):
     
     
     # Plotar o gráfico
-    fig = px.line(df_pivot, title='Consumo diário de energia do item 1')
+    fig = px.line(df_pivot)
     fig.update_layout(
         xaxis_title='Dia',
         yaxis_title='Consumo de Energia Médio',
         title_font_color='black',
         title_font_size=22,
+        title={
+            'text': 'Consumo diário de energia do item 1',
+            'x': 0.5,
+            'xanchor': 'center'
+        }
     )
-    return fig.write_html('/home/ivan/Python/gerenciamento_energia/grafico_caminho1.html')
-
-dados = grafico_diario_anual()
-grafico = gerar_grafico(dados)
-
+    return fig.write_html(f'/home/ivan/Python/gerenciamento_energia/grafico_{item}.html')
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -119,23 +120,38 @@ class Widget(QWidget):
         self.ui.button_sobre.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_sobre))
         self.ui.button_gerenciar.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_gerenciamento))
 
+
+
+
+        # Adicionando o primeiro gráfico
+        dados_um = grafico_diario_anual('caminho1')
+        grafico_um = gerar_grafico(dados_um, 'caminho1')
         scene = QGraphicsScene()
         self.ui.graphicsView.setScene(scene)
-
-        html_char_view = load_html_chart()
-                
+        html_char_view_um = load_html_chart('caminho1')
         proxy = QGraphicsProxyWidget()
-        proxy.setWidget(html_char_view)
-
-        # Adicionar o QGraphicsProxyWidget à QGraphicsScene
+        proxy.setWidget(html_char_view_um)
         scene.addItem(proxy)
 
-        # Ajustar a visualização para o tamanho do gráfico
-        #self.ui.graphicsView.fitInView(scene.sceneRect())
-        #self.ui.graphicsView.show()
+        # Adicionando o segundo gráfico
+        dados_dois = grafico_diario_anual('caminho2')
+        grafico_dois = gerar_grafico(dados_dois, 'caminho2')
+        scene = QGraphicsScene()
+        self.ui.graphicsView_2.setScene(scene)
+        html_char_view_dois = load_html_chart('caminho2')
+        proxy = QGraphicsProxyWidget()
+        proxy.setWidget(html_char_view_dois)
+        scene.addItem(proxy)
 
-
-
+        # Adicionando o terceiro gráfico
+        dados_tres = grafico_diario_anual('caminho3')
+        grafico_tres = gerar_grafico(dados_tres, 'caminho3')
+        scene = QGraphicsScene()
+        self.ui.graphicsView_3.setScene(scene)
+        html_char_view_tres = load_html_chart('caminho3')
+        proxy = QGraphicsProxyWidget()
+        proxy.setWidget(html_char_view_tres)
+        scene.addItem(proxy)
 
     def leftMenu(self):
         width = self.ui.left_container.width()

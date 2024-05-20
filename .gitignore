@@ -1,9 +1,8 @@
-.env
 .venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-/venvvenv/
 venv/*
+config.py
+dados_sensiveis.py
+dados_sensiveis
+grafico_caminho1.html
+grafico_caminho2.html
+grafico_caminho3.html
