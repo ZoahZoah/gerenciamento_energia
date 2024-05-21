@@ -1,9 +1,10 @@
 import sys
 import config
 from data_base import BancoDeDados
+from graficos import Graficos
 from PySide6 import QtCore
 from PySide6.QtCore import QCoreApplication
-from PySide6.QtWidgets import QApplication, QWidget, QGraphicsScene
+from PySide6.QtWidgets import QApplication, QWidget, QGraphicsScene, QGraphicsProxyWidget
 from QrcFiles.ui_main_window import Ui_Widget
 
 class Widget(QWidget):
@@ -11,6 +12,8 @@ class Widget(QWidget):
         super().__init__(parent)
 
         self.bd = BancoDeDados(config.host, config.user, config.password, 'dados_energia')
+        self.gr = Graficos(self.bd)
+
         titulo_janela = 'Blink'
 
         self.ui = Ui_Widget()   
@@ -23,6 +26,36 @@ class Widget(QWidget):
         self.ui.butto_contato.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_contatos))
         self.ui.button_sobre.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_sobre))
         self.ui.button_gerenciar.clicked.connect(lambda: self.ui.Pages.setCurrentWidget(self.ui.pg_gerenciamento))
+        self.ui.pushButton.clicked.connect(self.ativar_grafico_um)
+        self.ui.pushButton_2.clicked.connect(self.ativar_grafico_dois)
+        self.ui.pushButton_3.clicked.connect(self.ativar_grafico_tres)
+
+    # Adicionando o gráfico no primeiro quadrado
+    def atualizar_grafico(self, categoria, local_grafico):
+        dados = self.gr.grafico_diario_anual(categoria)
+        grafico_um = self.gr.gerar_grafico(dados, categoria)
+        scene = QGraphicsScene()
+        local_grafico.setScene(scene)
+        '''self.ui.graphicsView.setScene(scene)'''
+        html_char_view_um = self.gr.load_html_chart(categoria)
+        proxy = QGraphicsProxyWidget()
+        proxy.setWidget(html_char_view_um)
+        scene.addItem(proxy)
+
+    def ativar_grafico_um(self):
+        caminho = 'caminho1'
+        local_grafico = self.ui.graphicsView
+        self.atualizar_grafico(caminho, local_grafico)
+
+    def ativar_grafico_dois(self):
+        caminho = 'caminho2'
+        local_grafico = self.ui.graphicsView_2
+        self.atualizar_grafico(caminho, local_grafico)
+
+    def ativar_grafico_tres(self):
+        caminho = 'caminho3'
+        local_grafico = local_grafico = self.ui.graphicsView_3
+        self.atualizar_grafico(caminho, local_grafico)
 
 
     def leftMenu(self):
